@@ -1,80 +1,85 @@
-import { useState } from "react"; // hook useState
+import React, { useState } from 'react';
 
-// Componente TransactionForm: formulário para adicionar transações
-// Recebe prop: onAddTransaction (função para adicionar transação)
-const TransactionForm = ({ onAddTransaction }) => {
-  // useState para gerenciar o estado do formulário
-  // formData é o estado atual, setFormData é a função para atualizar
-  const [formData, setFormData] = useState({
-    type: "", // Tipo da transação (receita/despesa)
-    description: "", // Descrição
-    category: "", // Categoria
-    amount: "", // Valor
+interface Transaction {
+  id: number;
+  type: 'receita' | 'despesa';
+  description: string;
+  category: string;
+  amount: number;
+  date: string;
+}
+
+interface TransactionFormProps {
+  onAddTransaction: (transaction: Transaction) => void;
+}
+
+interface FormData {
+  type: string;
+  description: string;
+  category: string;
+  amount: string;
+}
+
+const TransactionForm = ({ onAddTransaction }: TransactionFormProps) => {
+  const [formData, setFormData] = useState<FormData>({
+    type: '',
+    description: '',
+    category: '',
+    amount: '',
   });
 
-  // Função chamada quando qualquer campo do formulário muda
-  const handleChange = (e) => {
-    // Atualiza o estado mantendo os valores antigos e mudando só o campo alterado
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData({
-      ...formData, // Copia todos os valores atuais
-      [e.target.id]: e.target.value, // Atualiza o campo específico
+      ...formData,
+      [e.target.id]: e.target.value,
     });
   };
 
-  // Função chamada quando o formulário é enviado
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Previne o comportamento padrão (recarregar página)
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    // Extrai valores do estado do formulário
     const { type, description, category, amount } = formData;
-    const amountValue = parseFloat(amount); // Converte string para número
+    const amountValue = parseFloat(amount);
 
-    // Valida se todos os campos estão preenchidos corretamente
     if (type && description && category && amountValue > 0) {
-      // Cria objeto da nova transação
-      const transaction = {
-        id: Date.now(), // ID único baseado no timestamp
-        type, // Tipo (receita/despesa)
-        description, // Descrição
-        category, // Categoria
-        amount: amountValue, // Valor (número)
-        date: new Date().toISOString(), // Data atual em formato ISO
+      const newTransaction: Transaction = {
+        id: Date.now(),
+        type: type as 'receita' | 'despesa',
+        description,
+        category,
+        amount: amountValue,
+        date: new Date().toISOString(),
       };
 
-      // Chama função recebida via props para adicionar a transação
-      onAddTransaction(transaction);
+      onAddTransaction(newTransaction);
 
-      // Limpa o formulário resetando o estado
       setFormData({
-        type: "",
-        description: "",
-        category: "",
-        amount: "",
+        type: '',
+        description: '',
+        category: '',
+        amount: '',
       });
     }
   };
 
   return (
-    // Seção do formulário
-    <section>
-      {/* Título */}
-      <h2>Adicionar Nova Transação</h2>
-
-      {/* Formulário com onSubmit chamando handleSubmit */}
-      <form id="transaction-form" onSubmit={handleSubmit}>
-        {/* Select para tipo de transação */}
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
         <select
           id="type"
-          value={formData.type} // Valor controlado pelo estado
-          onChange={handleChange} // Chama handleChange quando muda
-          required // Campo obrigatório
+          value={formData.type}
+          onChange={handleChange as any}
+          required
         >
           <option value="">Selecione o tipo</option>
           <option value="receita">🟢 Receita</option>
           <option value="despesa">🔴 Despesa</option>
         </select>
+      </div>
 
-        {/* Input para descrição */}
+      <div className="form-group">
         <input
           type="text"
           id="description"
@@ -83,12 +88,13 @@ const TransactionForm = ({ onAddTransaction }) => {
           onChange={handleChange}
           required
         />
+      </div>
 
-        {/* Select para categoria */}
+      <div className="form-group">
         <select
           id="category"
           value={formData.category}
-          onChange={handleChange}
+          onChange={handleChange as any}
           required
         >
           <option value="">Selecione a categoria</option>
@@ -96,11 +102,11 @@ const TransactionForm = ({ onAddTransaction }) => {
           <option value="alimentacao">Alimentação</option>
           <option value="transporte">Transporte</option>
           <option value="lazer">Lazer</option>
-          <option value="internet">Internet</option>
           <option value="outros">Outros</option>
         </select>
+      </div>
 
-        {/* Input para valor */}
+      <div className="form-group">
         <input
           type="number"
           id="amount"
@@ -110,11 +116,12 @@ const TransactionForm = ({ onAddTransaction }) => {
           onChange={handleChange}
           required
         />
+      </div>
 
-        {/* Botão de submit */}
-        <button type="submit">➕ Adicionar</button>
-      </form>
-    </section>
+      <button type="submit" className="btn-primary">
+        ➕ Adicionar
+      </button>
+    </form>
   );
 };
 
