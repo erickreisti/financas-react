@@ -224,6 +224,11 @@ main {
   width: 100%;
 }
 
+main div h1 {
+  margin-top: var(--spacer-5);
+  margin-bottom: var(--spacer-5);
+}
+
 /* Cards e containers */
 .card {
   background: white;
