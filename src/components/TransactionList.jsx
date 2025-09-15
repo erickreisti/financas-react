@@ -1,7 +1,3 @@
-// src/components/TransactionList.jsx
-// Importa React para criar componente
-import React from "react";
-
 // Componente TransactionList: lista de transações
 // Recebe props: transactions (array) e onDeleteTransaction (função)
 const TransactionList = ({ transactions, onDeleteTransaction }) => {

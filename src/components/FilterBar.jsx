@@ -1,7 +1,3 @@
-// src/components/FilterBar.jsx
-// Importa React para criar componente
-import React from "react";
-
 // Componente FilterBar: barra de filtros e ordenação
 // Recebe várias props para controle de filtros e ordenação
 const FilterBar = ({

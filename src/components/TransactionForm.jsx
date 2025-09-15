@@ -1,5 +1,4 @@
-// src/components/TransactionForm.jsx
-import React, { useState } from "react"; // Importa React e hook useState
+import { useState } from "react"; // hook useState
 
 // Componente TransactionForm: formulário para adicionar transações
 // Recebe prop: onAddTransaction (função para adicionar transação)

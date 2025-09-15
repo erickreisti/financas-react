@@ -1,6 +1,3 @@
-// src/components/Saldo.jsx
-import React from "react"; // Importa React
-
 // Componente Saldo: mostra o saldo total das transações
 // Recebe prop: total (número com o valor do saldo)
 const Saldo = ({ total }) => {

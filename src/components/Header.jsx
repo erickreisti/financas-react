@@ -1,6 +1,3 @@
-// src/components/Header.jsx
-import React from "react"; // Importa React para criar componentes
-
 // Componente Header: cabeçalho da aplicação
 // Recebe props: darkMode (boolean) e toggleDarkMode (função)
 const Header = ({ darkMode, toggleDarkMode }) => {
