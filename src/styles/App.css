@@ -1,0 +1,357 @@
+/* src/styles/App.css */
+/* Reset básico para consistência entre navegadores */
+* {
+  margin: 0; /* Remove margens padrão */
+  padding: 0; /* Remove padding padrão */
+  box-sizing: border-box; /* Inclui borda e padding no cálculo de largura/altura */
+}
+
+/* Estilos do corpo da página */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna */
+  padding: 20px; /* Espaçamento interno */
+  background-color: #f8f9fa; /* Cor de fundo clara */
+  color: #333; /* Cor do texto */
+  transition: background-color 0.3s, color 0.3s; /* Transição suave de cores */
+  line-height: 1.6; /* Altura de linha para melhor leitura */
+}
+
+/* Estilos para modo escuro */
+body.dark {
+  background-color: #121212; /* Fundo escuro */
+  color: #e0e0e0; /* Texto claro */
+}
+
+/* Cabeçalho */
+header {
+  display: flex; /* Layout flexível */
+  justify-content: space-between; /* Espaça itens */
+  align-items: center; /* Alinha verticalmente */
+  margin-bottom: 30px; /* Espaço abaixo */
+  padding-bottom: 15px; /* Espaço interno abaixo */
+  border-bottom: 2px solid #e9ecef; /* Borda inferior */
+}
+
+/* Modo escuro para cabeçalho */
+body.dark header {
+  border-bottom-color: #404040; /* Borda escura */
+}
+
+/* Títulos */
+h1 {
+  font-size: 2rem; /* Tamanho da fonte */
+  margin: 0; /* Remove margem */
+}
+
+h2 {
+  margin-bottom: 15px; /* Espaço abaixo */
+  color: #495057; /* Cor do texto */
+}
+
+/* Modo escuro para h2 */
+body.dark h2 {
+  color: #adb5bd; /* Cor clara */
+}
+
+/* Botão de tema */
+#toggle-theme {
+  background: none; /* Sem fundo */
+  border: none; /* Sem borda */
+  font-size: 1.5rem; /* Tamanho da fonte */
+  cursor: pointer; /* Cursor de mão */
+  padding: 5px 10px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.2s; /* Transição suave */
+}
+
+/* Hover no botão de tema */
+#toggle-theme:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Fundo semi-transparente */
+}
+
+/* Hover no modo escuro */
+body.dark #toggle-theme:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Fundo claro semi-transparente */
+}
+
+/* Seção de saldo */
+.saldo-section {
+  text-align: center; /* Texto centralizado */
+  margin-bottom: 30px; /* Espaço abaixo */
+  padding: 20px; /* Espaçamento interno */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradiente */
+  border-radius: 15px; /* Bordas arredondadas */
+  color: white; /* Texto branco */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Valor do saldo */
+.saldo {
+  font-size: 2.5em; /* Tamanho grande */
+  font-weight: bold; /* Negrito */
+  margin: 10px 0; /* Margem vertical */
+}
+
+/* Barra de filtros */
+.filters {
+  display: flex; /* Layout flexível */
+  gap: 15px; /* Espaço entre elementos */
+  margin-bottom: 20px; /* Espaço abaixo */
+  flex-wrap: wrap; /* Quebra linha em telas pequenas */
+}
+
+/* Selects nos filtros */
+.filters select {
+  padding: 10px; /* Espaçamento interno */
+  border: 1px solid #ced4da; /* Borda */
+  border-radius: 8px; /* Bordas arredondadas */
+  background-color: white; /* Fundo branco */
+  color: #495057; /* Cor do texto */
+  font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Modo escuro para selects */
+body.dark .filters select {
+  background-color: #2d2d2d; /* Fundo escuro */
+  border-color: #404040; /* Borda escura */
+  color: #e0e0e0; /* Texto claro */
+}
+
+/* Lista de transações */
+ul {
+  list-style: none; /* Remove marcadores */
+  padding: 0; /* Remove padding */
+}
+
+/* Itens da lista */
+li {
+  padding: 15px; /* Espaçamento interno */
+  background-color: #fff; /* Fundo branco */
+  margin-bottom: 12px; /* Espaço abaixo */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  display: flex; /* Layout flexível */
+  justify-content: space-between; /* Espaça itens */
+  align-items: center; /* Alinha verticalmente */
+  transition: transform 0.2s, box-shadow 0.2s; /* Transições suaves */
+}
+
+/* Hover nos itens */
+li:hover {
+  transform: translateY(-2px); /* Move para cima */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+}
+
+/* Modo escuro para itens */
+body.dark li {
+  background-color: #2d2d2d; /* Fundo escuro */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Sombra escura */
+}
+
+/* Cores para receitas e despesas */
+.receita {
+  border-left: 5px solid #28a745; /* Borda verde para receitas */
+}
+
+.despesa {
+  border-left: 5px solid #dc3545; /* Borda vermelha para despesas */
+}
+
+/* Informações da transação */
+.transaction-info {
+  flex: 1; /* Ocupa espaço disponível */
+}
+
+/* Descrição em negrito */
+.transaction-info strong {
+  font-size: 1.1em; /* Tamanho maior */
+  display: block; /* Bloco para margem */
+  margin-bottom: 5px; /* Espaço abaixo */
+}
+
+/* Metadados da transação */
+.transaction-meta {
+  font-size: 0.85em; /* Tamanho menor */
+  color: #6c757d; /* Cor cinza */
+}
+
+/* Modo escuro para metadados */
+body.dark .transaction-meta {
+  color: #adb5bd; /* Cor clara */
+}
+
+/* Valor da transação */
+.transaction-amount {
+  text-align: right; /* Texto alinhado à direita */
+  margin-left: 15px; /* Margem esquerda */
+}
+
+/* Valor formatado */
+.valor {
+  font-weight: bold; /* Negrito */
+  font-size: 1.1em; /* Tamanho maior */
+  display: block; /* Bloco para margem */
+}
+
+/* Cores para valores */
+.receita .valor {
+  color: #28a745; /* Verde para receitas */
+}
+
+.despesa .valor {
+  color: #dc3545; /* Vermelho para despesas */
+}
+
+/* Tag de categoria */
+.category-tag {
+  display: inline-block; /* Inline-block para dimensionamento */
+  padding: 2px 8px; /* Espaçamento interno */
+  border-radius: 12px; /* Bordas arredondadas */
+  font-size: 0.75em; /* Tamanho menor */
+  font-weight: bold; /* Negrito */
+  margin-top: 5px; /* Margem acima */
+  background-color: #e9ecef; /* Fundo cinza claro */
+  color: #495057; /* Cor do texto */
+}
+
+/* Modo escuro para tag de categoria */
+body.dark .category-tag {
+  background-color: #404040; /* Fundo escuro */
+  color: #e0e0e0; /* Texto claro */
+}
+
+/* Botão de deletar */
+.delete-btn {
+  background-color: #dc3545; /* Fundo vermelho */
+  color: white; /* Texto branco */
+  border: none; /* Sem borda */
+  padding: 6px 12px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  cursor: pointer; /* Cursor de mão */
+  font-size: 14px; /* Tamanho da fonte */
+  margin-left: 10px; /* Margem esquerda */
+  transition: background-color 0.2s; /* Transição suave */
+}
+
+/* Hover no botão de deletar */
+.delete-btn:hover {
+  background-color: #c82333; /* Fundo vermelho mais escuro */
+}
+
+/* Formulário */
+form {
+  display: flex; /* Layout flexível */
+  flex-direction: column; /* Direção vertical */
+  gap: 12px; /* Espaço entre elementos */
+  max-width: 400px; /* Largura máxima */
+  background-color: #fff; /* Fundo branco */
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+/* Modo escuro para formulário */
+body.dark form {
+  background-color: #2d2d2d; /* Fundo escuro */
+}
+
+/* Inputs e selects */
+input,
+select,
+button {
+  padding: 12px; /* Espaçamento interno */
+  font-size: 16px; /* Tamanho da fonte */
+  border: 1px solid #ced4da; /* Borda */
+  border-radius: 8px; /* Bordas arredondadas */
+}
+
+/* Modo escuro para inputs e selects */
+body.dark input,
+body.dark select {
+  background-color: #404040; /* Fundo escuro */
+  border-color: #555; /* Borda escura */
+  color: #e0e0e0; /* Texto claro */
+}
+
+/* Botões */
+button {
+  cursor: pointer; /* Cursor de mão */
+  background-color: #007bff; /* Fundo azul */
+  color: white; /* Texto branco */
+  font-weight: bold; /* Negrito */
+  border: none; /* Sem borda */
+  transition: background-color 0.2s; /* Transição suave */
+}
+
+/* Hover em botões */
+button:hover {
+  background-color: #0056b3; /* Fundo azul mais escuro */
+}
+
+/* Botão de ordenação */
+#sort-btn {
+  background-color: #28a745; /* Fundo verde */
+  font-size: 0.9em; /* Tamanho menor */
+  padding: 8px 12px; /* Espaçamento interno */
+}
+
+/* Hover no botão de ordenação */
+#sort-btn:hover {
+  background-color: #218838; /* Fundo verde mais escuro */
+}
+
+/* Responsividade para tablets */
+@media (max-width: 768px) {
+  body {
+    padding: 15px; /* Menos padding */
+  }
+
+  header {
+    flex-direction: column; /* Layout vertical */
+    gap: 15px; /* Espaço entre elementos */
+    text-align: center; /* Texto centralizado */
+  }
+
+  .filters {
+    flex-direction: column; /* Layout vertical */
+  }
+
+  .filters select {
+    width: 100%; /* Largura total */
+  }
+
+  li {
+    flex-direction: column; /* Layout vertical */
+    align-items: flex-start; /* Alinhar à esquerda */
+    gap: 10px; /* Espaço entre elementos */
+  }
+
+  .transaction-amount {
+    align-self: flex-end; /* Alinhar à direita */
+    margin-left: 0; /* Sem margem esquerda */
+  }
+
+  form {
+    max-width: 100%; /* Largura total */
+  }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Tamanho menor */
+  }
+
+  .saldo {
+    font-size: 2rem; /* Tamanho menor */
+  }
+
+  .saldo-section {
+    padding: 15px; /* Menos padding */
+  }
+}
