@@ -141,7 +141,6 @@ header h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto; /* Empurra o botão para a direita */
 }
 
 #toggle-theme:hover {
@@ -439,6 +438,11 @@ textarea:focus {
   border-left-color: var(--danger);
 }
 
+/* CORREÇÕES PARA MODO DARK */
+body.dark .transaction-item {
+  background-color: #252525; /* Fundo mais escuro */
+}
+
 .transaction-info {
   flex: 1;
 }
@@ -447,6 +451,12 @@ textarea:focus {
   display: block;
   margin-bottom: var(--spacer-1);
   font-size: 1.1rem;
+  color: var(--gray-800); /* Texto mais escuro no modo claro */
+}
+
+/* Texto mais claro no modo dark */
+body.dark .transaction-info strong {
+  color: #ffffff; /* Texto branco no dark mode */
 }
 
 .transaction-meta {
@@ -457,8 +467,18 @@ textarea:focus {
   color: var(--gray-600);
 }
 
+/* Meta mais escura no modo dark */
 body.dark .transaction-meta {
   color: var(--gray-400);
+}
+
+.transaction-meta div {
+  color: var(--primary-dark);
+}
+
+/* Data mais clara no modo dark */
+body.dark .transaction-meta div {
+  color: #66b3ff; /* Azul mais claro para data no dark mode */
 }
 
 .category-tag {
@@ -480,6 +500,14 @@ body.dark .category-tag {
   text-align: right;
   font-weight: 700;
   font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacer-2);
+}
+
+/* Valor mais escuro no modo dark por padrão */
+body.dark .transaction-amount {
+  color: var(--gray-300);
 }
 
 .transaction-amount.positive {
@@ -502,7 +530,6 @@ body.dark .category-tag {
   align-items: center;
   justify-content: center;
   transition: background-color var(--transition-fast);
-  margin-left: var(--spacer-2);
 }
 
 .delete-btn:hover {
@@ -577,6 +604,11 @@ body.dark .category-tag {
   padding: var(--spacer-3);
   box-shadow: var(--shadow-sm);
   border-left: 4px solid var(--gray-300);
+}
+
+body.dark .category-card {
+  background: #252525;
+  border-color: #404040;
 }
 
 .category-card.positive {
