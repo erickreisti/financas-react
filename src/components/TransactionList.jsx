@@ -1,4 +1,3 @@
-// Componente TransactionList: lista de transações
 // Recebe props: transactions (array) e onDeleteTransaction (função)
 const TransactionList = ({ transactions, onDeleteTransaction }) => {
   // Objeto para mapear chaves de categoria para nomes amigáveis
@@ -7,6 +6,7 @@ const TransactionList = ({ transactions, onDeleteTransaction }) => {
     alimentacao: "Alimentação",
     transporte: "Transporte",
     lazer: "Lazer",
+    internet: "Internet",
     outros: "Outros",
   };
 

@@ -96,6 +96,7 @@ const TransactionForm = ({ onAddTransaction }) => {
           <option value="alimentacao">Alimentação</option>
           <option value="transporte">Transporte</option>
           <option value="lazer">Lazer</option>
+          <option value="internet">Internet</option>
           <option value="outros">Outros</option>
         </select>
 

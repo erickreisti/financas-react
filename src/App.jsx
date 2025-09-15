@@ -1,5 +1,4 @@
-// src/App.jsx
-import React, { useState, useEffect } from "react"; // Importa React e hooks
+import { useState, useEffect } from "react";
 import "./styles/App.css"; // Importa estilos CSS
 import Header from "./components/Header"; // Importa componente Header
 import Saldo from "./components/Saldo"; // Importa componente Saldo
