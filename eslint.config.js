@@ -1,3 +1,4 @@
+// eslint.config.js
 import js from '@eslint/js';
 import globals from 'globals';
 import react from 'eslint-plugin-react';
@@ -13,7 +14,7 @@ export default [
 
   // Configuração para arquivos JavaScript (sem type-checking)
   {
-    files: ['**/*.js', 'eslint.config.js'],
+    files: ['**/*.js'],
     extends: [js.configs.recommended],
     rules: {
       'prettier/prettier': 'error',
@@ -43,6 +44,7 @@ export default [
       prettier: prettier,
     },
     rules: {
+      ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,

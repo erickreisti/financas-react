@@ -1,41 +1,53 @@
+// src/pages/Transactions.tsx
+// Página com todas as transações
+
 import FilterBar from '../components/FilterBar';
 import TransactionList from '../components/TransactionList';
+import { useTransactions } from '../hooks/useTransactions'; // Importa hook do contexto
 
-interface Transaction {
-  id: number;
-  type: 'receita' | 'despesa';
-  description: string;
-  category: string;
-  amount: number;
-  date: string;
-}
-
+// Interface para definir props recebidas pelo componente
 interface TransactionsProps {
-  transactions: Transaction[];
-  deleteTransaction: (id: number) => void;
   filterType: string;
   filterCategory: string;
   handleFilterChange: (filterName: string, value: string) => void;
   isSorted: boolean;
   toggleSort: () => void;
-  filteredTransactions: Transaction[];
 }
 
+// Componente Transactions: página com todas transações
 const Transactions = ({
-  transactions,
-  deleteTransaction,
   filterType,
   filterCategory,
   handleFilterChange,
   isSorted,
   toggleSort,
-  filteredTransactions,
 }: TransactionsProps) => {
-  return (
-    <div>
-      <h1>📋 Todas as Transações</h1>
-      <p>Total de transações: {transactions.length}</p>
+  // Usa hook customizado para acessar contexto de transações
+  const { transactions, deleteTransaction } = useTransactions();
 
+  // Filtra transações baseado nos filtros selecionados
+  const filteredTransactions = transactions.filter(transaction => {
+    const typeMatch = filterType === 'todas' || transaction.type === filterType;
+    const categoryMatch =
+      filterCategory === 'todas' || transaction.category === filterCategory;
+    return typeMatch && categoryMatch;
+  });
+
+  // Ordena transações se isSorted for true
+  const sortedTransactions = isSorted
+    ? [...filteredTransactions].sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      )
+    : filteredTransactions;
+
+  // Retorna JSX (interface do componente)
+  return (
+    // Div principal da página
+    <div>
+      {/* Título da página */}
+      <h1>📋 Todas as Transações</h1>
+
+      {/* Seção de filtros */}
       <div className="card">
         <FilterBar
           filterType={filterType}
@@ -45,17 +57,18 @@ const Transactions = ({
           isSorted={isSorted}
         />
 
+        {/* Contador de transações encontradas */}
         <div style={{ marginTop: '20px' }}>
           <p>
-            <strong>{filteredTransactions.length}</strong> transações
-            encontradas
+            <strong>{sortedTransactions.length}</strong> transações encontradas
           </p>
         </div>
       </div>
 
+      {/* Seção de lista de transações */}
       <div className="card">
         <TransactionList
-          transactions={filteredTransactions}
+          transactions={sortedTransactions}
           onDeleteTransaction={deleteTransaction}
         />
       </div>
@@ -63,4 +76,5 @@ const Transactions = ({
   );
 };
 
+// Exporta componente para ser usado em outras partes do app
 export default Transactions;
